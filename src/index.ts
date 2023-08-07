@@ -1,18 +1,40 @@
-import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
-import fs from 'node:fs';
-import path from 'node:path';
+import { Client, GatewayIntentBits } from 'discord.js';
+import { onInteraction } from './events/onInteraction';
+import { deployCommands } from './deployCommands';
+import { configDotenv } from 'dotenv'; // TODO
+// require('dotenv').config();
 
-require('dotenv').config();
-const TOKEN = process.env.DISCORD_TOKEN;
+(async () => {
+	// fetch environment variables
+	const token = process.env.DISCORD_TOKEN;
+	const clientId = process.env.CLIENT_ID;
+	const guildId = process.env.GUILD_ID;
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+	// verify environment variables
+	let areEnvironmentVariablesSet: boolean = false;
+	if (!token) {
+		console.error('Missing Discord bot token.🔣');
+		areEnvironmentVariablesSet = true;
+	}
+	if (!clientId) {
+		console.error('Missing client ID.🔣');
+		areEnvironmentVariablesSet = true;
+	}
+	if (!guildId) {
+		console.error('Missing dev guild ID.🔣');
+		areEnvironmentVariablesSet = true;
+	}
+	if (areEnvironmentVariablesSet) process.exit(1);
 
-try {
-	client.login(TOKEN);
-	console.log('Bot logged in successfully.🥳');
-} catch {
-	console.error('Discord bot login failed.👎');
-}	
+	const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // connect to discord client
+	
+	client.on("ready", () => {
+		console.log(`✅Bot connected to Discord... Jukebot is live!🤖`)
+	});
 
-console.log('Jukebot is live!🤖');
+	client.on("interactionCreate", async (interaction) => await onInteraction(interaction));
 
+	await client.login(token); // login to client
+
+	deployCommands(token, clientId, guildId);
+})();

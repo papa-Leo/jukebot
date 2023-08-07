@@ -9,7 +9,7 @@
 	"description": "A discord music bot for custom music and playlists",
 	"main": "build/index.js",
 	"scripts": {
-		"test": "npx tsc && node build/index.js",
+		"test": "npx tsc && echo Build finished, starting Jukebot && node build/index.js",
 		"compile": "npx tsc"
 	},
 	"repository": {
