@@ -87,6 +87,8 @@ This discord music bot allows the users of a server to upload their own custom m
 
 This project was created using the discord.js library for NodeJS.
 
+I am aware that there are many bots similar to this already. I creating this mostly for fun, and to learn. I would also like to add my own unique ideas.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
