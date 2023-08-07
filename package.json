@@ -1,5 +1,25 @@
 {
-  "dependencies": {
-    "discord.js": "^14.12.1"
-  }
+	"dependencies": {
+		"discord.js": "^14.12.1",
+		"dotenv": "^16.3.1",
+		"typescript": "^5.1.6"
+	},
+	"name": "jukebot",
+	"version": "0.0.1",
+	"description": "A discord music bot for custom music and playlists",
+	"main": "build/index.js",
+	"scripts": {
+		"test": "npx tsc && node build/index.js",
+		"compile": "npx tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/papa-Leo/jukebot.git"
+	},
+	"author": "papa-Leo",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/papa-Leo/jukebot/issues"
+	},
+	"homepage": "https://github.com/papa-Leo/jukebot#readme"
 }
