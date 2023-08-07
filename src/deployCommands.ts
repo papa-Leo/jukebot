@@ -8,14 +8,14 @@ export const deployCommands = async (token: string, clientId: string, guildId: s
 	const commandData = CommandList.map((command) => command.data.toJSON());
 
 	try {
-		console.log(`Started refreshing ${commandData.length} application (/) commands.`);
+		console.log(`Started refreshing ${commandData.length} application (/) commands.🔄️`);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commandData },
 		);
-		console.log(`Successfully reloaded application (/) commands.`);
+		console.log(`Successfully reloaded application (/) commands.✅`);
 	} catch (error) {
 		console.error('An error occurred while trying to PUT data:' + error);
 	}

@@ -1,8 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { onInteraction } from './events/onInteraction';
 import { deployCommands } from './deployCommands';
-import { configDotenv } from 'dotenv'; // TODO
-// require('dotenv').config();
+require('dotenv').config();
 
 (async () => {
 	// fetch environment variables
@@ -29,7 +28,7 @@ import { configDotenv } from 'dotenv'; // TODO
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // connect to discord client
 	
 	client.on("ready", () => {
-		console.log(`✅Bot connected to Discord... Jukebot is live!🤖`)
+		console.log(`🤖 Bot connected to Discord... Jukebot is live!✅`);
 	});
 
 	client.on("interactionCreate", async (interaction) => await onInteraction(interaction));
